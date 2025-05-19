@@ -1,6 +1,6 @@
 # Reinforcement Learning  
   
-Simple Python scripts to learn reinforcement learning using the epsilon-greedy method and SARSA update.  
+Simple Python scripts to learn reinforcement learning using the epsilon-greedy method and various updates like SARSA, Q-learning Monte-Carlo, function approximation etc. 
   
 ## Overview  
   
