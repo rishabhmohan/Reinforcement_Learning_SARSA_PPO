@@ -17,9 +17,13 @@ This approach helps the agent to explore new actions while still making use of t
 SARSA (State-Action-Reward-State-Action) is an on-policy reinforcement learning algorithm used to learn the optimal policy for an agent navigating an environment. In each step, the agent:
 
 Observes the current state.
+
 Selects an action using an epsilon-greedy strategy.
+
 Takes the action and observes the next state and reward.
+
 Selects the next action using an epsilon-greedy strategy.
+
 Updates the Q-value for the current state-action pair using the observed reward and the estimated value of the next state-action pair.
 
 
