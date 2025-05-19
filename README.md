@@ -23,8 +23,7 @@ SARSA is called an on-policy algorithm because it updates the Q-values based on 
 
 ### PPO Algorithm
  
-Proximal Policy Optimization (PPO) is a policy gradient method for reinforcement learning that alternates between sampling data through interaction with the environment and optimizing a "surrogate" objective function using stochastic gradient ascent. PPO is designed to be simpler to implement and tune compared to other policy gradient methods while maintaining strong performance.
-
+Proximal Policy Optimization (PPO) is a policy gradient method for reinforcement learning that alternates between sampling data through interaction with the environment and optimizing a "surrogate" objective function using stochastic gradient ascent. 
 In each step, the agent:
 
 1. Observes the current state.
