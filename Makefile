@@ -1,5 +1,5 @@
 tutorial:
-	@echo "Please read the 'Makefile' file to go through this tutorial"
+	@echo "Makefile"
 
 deps:
 	@echo "Installing dependencies..."
