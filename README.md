@@ -19,10 +19,22 @@ SARSA (State-Action-Reward-State-Action) is an on-policy reinforcement learning 
 4. Selects the next action using an epsilon-greedy strategy.  
 5. Updates the Q-value for the current state-action pair using the observed reward and the estimated value of the next state-action pair.  
   
-  
 SARSA is called an on-policy algorithm because it updates the Q-values based on the policy currently being followed, which includes the exploration strategy.  
-  
-## Example  
+
+### PPO Algorithm
+ 
+Proximal Policy Optimization (PPO) is a policy gradient method for reinforcement learning that alternates between sampling data through interaction with the environment and optimizing a "surrogate" objective function using stochastic gradient ascent. PPO is designed to be simpler to implement and tune compared to other policy gradient methods while maintaining strong performance.
+
+In each step, the agent:
+
+1. Observes the current state.
+2. Selects an action based on its current policy.
+3. Takes the action and observes the next state and reward.
+4. Updates the policy using the observed rewards to maximize the expected reward.
+
+PPO uses clipped probability ratios to limit the change in policy at each update step, which helps to ensure stable and reliable training.
+
+### SARSA Example  
   
 An example setup is provided in the `main` function:  
 - **Grid size:** 4x4  
