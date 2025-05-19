@@ -4,7 +4,7 @@ Python scripts to learn reinforcement learning with easy examples using the epsi
   
 ## Overview  
   
-This script implements a Grid World environment and uses the SARSA algorithm to find the optimal policy for navigating the grid. The Grid World is a simple environment where an agent starts at a specified position and attempts to reach a goal position while avoiding obstacles. The agent receives rewards or penalties depending on the positions it visits.  
+This script implements a Grid World environment and uses various algorithms like SARSA, Q-learning and MC (in same SARSA script) to find the optimal policy for navigating the grid. The Grid World is a simple environment where an agent starts at a specified position and attempts to reach a goal position while avoiding obstacles. The agent receives rewards or penalties depending on the positions it visits.  
   
 ### Epsilon-Greedy Strategy  
   
