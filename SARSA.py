@@ -72,7 +72,6 @@ def run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):
             next_state, reward, done = grid.step(action)  # Take the action and observe the next state and reward
             next_action = epsilon_greedy_action(Q, next_state,
                                                 epsilon)  # Select the next action using epsilon-greedy strategy
-            print(state, action, reward, next_state, next_action)  # Debugging output
             td_target = reward + gamma * Q[next_state][next_action]  # Compute the TD target
             td_error = td_target - Q[state][action]  # Compute the TD error
             Q[state][action] += alpha * td_error  # Update the Q-value
@@ -86,6 +85,27 @@ def run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):
 
     return cumulative_rewards, Q
 
+def run_q_learning_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):  
+    # Run the Q-learning strategy experiment  
+    Q = {state: np.zeros(4) for state in grid.rewards.keys()}  # Initialize Q-values for each state-action pair  
+    cumulative_rewards = np.zeros(num_trials)  # Initialize cumulative rewards  
+  
+    for i in range(num_trials):  
+        state = grid.reset()  # Reset the environment to the start state  
+        done = False  
+        while not done:  
+            action = epsilon_greedy_action(Q, state, epsilon)  # Select an action using epsilon-greedy strategy  
+            next_state, reward, done = grid.step(action)  # Take the action and observe the next state and reward  
+            best_next_action = np.argmax(Q[next_state])  # Select the best next action based on Q-values  
+            td_target = reward + gamma * Q[next_state][best_next_action]  # Compute the TD target  
+            td_error = td_target - Q[state][action]  # Compute the TD error  
+            Q[state][action] += alpha * td_error  # Update the Q-value  
+            cumulative_rewards[i] += reward  # Accumulate the reward  
+  
+            state = next_state  # Move to the next state  
+  
+    return cumulative_rewards, Q  
+  
 
 def main(grid_size=(4, 4), num_trials=500, epsilon=0.1, alpha=0.5, gamma=0.9):
     start = (0, 0)  # Define the starting position
