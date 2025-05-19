@@ -24,6 +24,10 @@ You can update Q values with SARSA update or Q-learning update:
 1. SARSA: On-policy algorithm. Updates Q-values based on the action actually taken by the current policy.
 2. Q-Learning: Off-policy algorithm. Updates Q-values based on the action that maximizes the future reward, regardless of the current policy.
 
+### Monte-Carlo vs SARSA
+SARSA updates Q-values using the TD (temporal difference) error based on the current state, action, reward, next state, and next action, relying on bootstrapping. 
+In contrast, Monte Carlo methods update Q-values based on the average of the returns observed from complete episodes without relying on intermediate estimates.
+
 ### SARSA with Function_approximation
 To add function approximation, we can use a linear function approximator with a set of features. We'll use a simple feature representation for each state-action pair and update the weights of the linear model instead of using a tabular Q-learning approach.
 
