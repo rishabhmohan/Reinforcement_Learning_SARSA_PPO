@@ -64,7 +64,7 @@ def feature_extractor(state, action, grid_size):
     return features.flatten()
 
 
-def run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):
+def run_sarsa_experiment_function_approximation(grid, num_trials, epsilon, alpha, gamma=0.9):
     # Run the SARSA strategy experiment with function approximation
     num_features = grid.grid_size[0] * grid.grid_size[1] * 4
     weights = np.zeros(num_features)  # Initialize weights for the linear function approximator
@@ -107,7 +107,7 @@ def main(grid_size=(4, 4), num_trials=500, epsilon=0.1, alpha=0.5, gamma=0.9):
                     if (i, j) not in obstacles and (i, j) != goal})  # Define the default reward for other positions
     grid = GridWorld(grid_size, start, goal, obstacles, rewards)  # Initialize the grid world environment
 
-    cumulative_rewards_sarsa, weights_sarsa = run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma)
+    cumulative_rewards_sarsa, weights_sarsa = run_sarsa_experiment_function_approximation(grid, num_trials, epsilon, alpha, gamma)
 
     # Plot cumulative rewards for the SARSA strategy
     plt.figure(figsize=(10, 5))
