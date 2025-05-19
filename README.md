@@ -3,17 +3,17 @@ Simple python scripts to learn reinforcement learning with epsilon greedy method
 
 
 
-# Overview
+## Overview
 This script implements a Grid World environment and uses the SARSA algorithm to find the optimal policy for navigating the grid. The Grid World is a simple environment where an agent starts at a specified position and attempts to reach a goal position while avoiding obstacles. The agent receives rewards or penalties depending on the positions it visits.
 
  
-Epsilon-Greedy Strategy
+## Epsilon-Greedy Strategy
 The epsilon-greedy strategy is a method used in reinforcement learning to balance exploration and exploitation. 
 With probability epsilon, the agent selects a random action (exploration) to discover potentially better options. 
 With probability 1 - epsilon, the agent selects the action that has the highest estimated reward based on the current Q-values (exploitation). 
 This approach helps the agent to explore new actions while still making use of the knowledge it has gained so far.
 
-SARSA Algorithm
+## SARSA Algorithm
 SARSA (State-Action-Reward-State-Action) is an on-policy reinforcement learning algorithm used to learn the optimal policy for an agent navigating an environment. In each step, the agent:
 
 Observes the current state.
