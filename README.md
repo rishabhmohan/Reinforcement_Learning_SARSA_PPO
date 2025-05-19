@@ -19,9 +19,9 @@ SARSA (State-Action-Reward-State-Action) is an on-policy reinforcement learning 
 4. Selects the next action using an epsilon-greedy strategy.  
 5. Updates the Q-value for the current state-action pair using the observed reward and the estimated value of the next state-action pair.  
   
-You can update Q values with SARSA update or Q-learning update
-SARSA: On-policy algorithm. Updates Q-values based on the action actually taken by the current policy.
-Q-Learning: Off-policy algorithm. Updates Q-values based on the action that maximizes the future reward, regardless of the current policy.
+You can update Q values with SARSA update or Q-learning update:
+1. SARSA: On-policy algorithm. Updates Q-values based on the action actually taken by the current policy.
+2. Q-Learning: Off-policy algorithm. Updates Q-values based on the action that maximizes the future reward, regardless of the current policy.
 
 ### PPO Algorithm
  
