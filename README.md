@@ -19,9 +19,6 @@ SARSA (State-Action-Reward-State-Action) is an on-policy reinforcement learning 
 4. Selects the next action using an epsilon-greedy strategy.  
 5. Updates the Q-value for the current state-action pair using the observed reward and the estimated value of the next state-action pair.  
   
-The Q-value update is given by:  
-\[ Q(s, a) \leftarrow Q(s, a) + \alpha \left[ r + \gamma Q(s', a') - Q(s, a) \right] \]  
-where \( s \) is the current state, \( a \) is the current action, \( r \) is the reward, \( s' \) is the next state, \( a' \) is the next action, \( \alpha \) is the learning rate, and \( \gamma \) is the discount factor.  
   
 SARSA is called an on-policy algorithm because it updates the Q-values based on the policy currently being followed, which includes the exploration strategy.  
   
@@ -45,4 +42,3 @@ The output of the script includes the cumulative rewards plot, which shows how t
 - `numpy`  
 - `matplotlib`  
   
-Make sure to install the
