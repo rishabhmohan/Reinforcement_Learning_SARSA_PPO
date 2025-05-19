@@ -39,23 +39,4 @@ In each step, the agent:
 
 PPO uses clipped probability ratios to limit the change in policy at each update step, which helps to ensure stable and reliable training.
 
-### SARSA Example  
-  
-An example setup is provided in the `main` function:  
-- **Grid size:** 4x4  
-- **Start position:** (0, 0)  
-- **Goal position:** (3, 3)  
-- **Obstacles:** {(1, 1), (2, 2)}  
-- **Rewards:** 1.0 for reaching the goal, -1.0 for hitting obstacles, 0.0 for other positions.  
-  
-The SARSA experiment is run for 10 trials with `epsilon=0.1`, `alpha=0.5`, and `gamma=0.9`.  
-  
-### Output  
-  
-The output of the script includes the cumulative rewards plot, which shows how the agent's performance improves over the trials.  
-  
-## Dependencies  
-  
-- `numpy`  
-- `matplotlib`  
-  
+
