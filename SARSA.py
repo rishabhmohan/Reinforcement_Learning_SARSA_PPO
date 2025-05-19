@@ -62,7 +62,6 @@ def run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):
     # Run the SARSA strategy experiment
     Q = {state: np.zeros(4) for state in grid.rewards.keys()}  # Initialize Q-values for each state-action pair
     cumulative_rewards = np.zeros(num_trials)  # Initialize cumulative rewards
-    print(Q, 'Q initialized')  # Debugging output
 
     for i in range(num_trials):
         state = grid.reset()  # Reset the environment to the start state
@@ -105,7 +104,36 @@ def run_q_learning_experiment(grid, num_trials, epsilon, alpha, gamma=0.9):
             state = next_state  # Move to the next state  
   
     return cumulative_rewards, Q  
-  
+
+def run_monte_carlo_experiment(grid, num_trials, epsilon, gamma=0.9):
+    # Run the Monte Carlo strategy experiment
+    Q = {state: np.zeros(4) for state in grid.rewards.keys()}  # Initialize Q-values for each state-action pair
+    returns = {state: {action: [] for action in range(4)} for state in
+               grid.rewards.keys()}  # Initialize returns for each state-action pair
+    cumulative_rewards = np.zeros(num_trials)  # Initialize cumulative rewards
+
+    for i in range(num_trials):
+        state = grid.reset()  # Reset the environment to the start state
+        episode = []  # Initialize the episode
+        done = False
+
+        # Generate an episode
+        while not done:
+            action = epsilon_greedy_action(Q, state, epsilon)  # Select an action using epsilon-greedy strategy
+            next_state, reward, done = grid.step(action)  # Take the action and observe the next state and reward
+            episode.append((state, action, reward))  # Store the state, action, and reward
+            state = next_state  # Move to the next state
+            cumulative_rewards[i] += reward  # Accumulate the reward
+
+        # Update Q-values using the episode
+        G = 0
+        for state, action, reward in reversed(episode):
+            G = gamma * G + reward
+            if (state, action) not in [(x[0], x[1]) for x in episode[:-1]]:
+                returns[state][action].append(G)
+                Q[state][action] = np.mean(returns[state][action])
+
+    return cumulative_rewards, Q
 
 def main(grid_size=(4, 4), num_trials=500, epsilon=0.1, alpha=0.5, gamma=0.9):
     start = (0, 0)  # Define the starting position
@@ -118,8 +146,20 @@ def main(grid_size=(4, 4), num_trials=500, epsilon=0.1, alpha=0.5, gamma=0.9):
 
     grid = GridWorld(grid_size, start, goal, obstacles, rewards)  # Initialize the grid world environment
 
-    # cumulative_rewards_epsilon_greedy, Q_epsilon_greedy = run_experiment(grid, num_trials, epsilon, alpha, gamma)
-    cumulative_rewards_sarsa, Q_sarsa = run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma)
+    cumulative_rewards_sarsa, Q_sarsa = run_sarsa_experiment(grid, num_trials, epsilon, alpha, gamma)  
+    cumulative_rewards_q_learning, Q_q_learning = run_q_learning_experiment(grid, num_trials, epsilon, alpha, gamma)  
+    cumulative_rewards_mc, Q_mc = run_monte_carlo_experiment(grid, num_trials, epsilon, gamma)  
+  
+    # Plot cumulative rewards for all strategies  
+    plt.figure(figsize=(10, 5))  
+    plt.plot(cumulative_rewards_sarsa, label='SARSA')  
+    plt.plot(cumulative_rewards_q_learning, label='Q-Learning')  
+    plt.plot(cumulative_rewards_mc, label='Monte Carlo')  
+    plt.xlabel('Trials')  
+    plt.ylabel('Cumulative Reward')  
+    plt.title('Cumulative Rewards Over Trials')  
+    plt.legend()  
+    plt.show()  
 
     # Plot cumulative rewards for both strategies
     plt.figure(figsize=(10, 5))
